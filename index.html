@@ -4,13 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="https://resources-4fdbb.web.app/Portfolio-Icon-Dark2.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="https://resources-4fdbb.web.app/Portfolio-Icon-Dark2.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>DVD Logo Using Javascript</title>
   </head>
   <body>
-    <div id="dvdLogo">
-      <img src="https://resources-4fdbb.web.app/dvd-logo.png" alt="" />
+    <div id="dvdLogo"></div>
+    <div id="controls-box">
+      <img src="https://dvd.ashutoshwagh.com/hamburger-menu-icon.svg" alt="" />
+      <div>
+        <div id="about">
+          <h2>Code:</h2>
+          <a href="https://github.com/WaghAshu03/bouncing-dvd-logo">
+            <img src="github-logo.webp" alt="" id="git-logo" />
+          </a>
+        </div>
+        <hr />
+        <h2>Controls</h2>
+        <h3>Speed:</h3>
+        <div id="Speed">
+          <input
+            type="range"
+            name=""
+            id="inputSpeed"
+            min="1"
+            max="500"
+            value="20"
+            oninput="outputSpeed.value = inputSpeed.value"
+          />
+          <output id="outputSpeed">20</output>
+        </div>
+      </div>
     </div>
     <script src="script.js" />
   </body>
