@@ -1,6 +1,6 @@
 # Bouncing DVD Logo
 ## Link
-[waghashu03.github.io/bouncing-dvd-logo](https://waghashu03.github.io/bouncing-dvd-logo)
+[dvd.ashutoshwagh.com/](https://dvd.ashutoshwagh.com/)
 
 ## Result
 ![](/output-gif.gif)
