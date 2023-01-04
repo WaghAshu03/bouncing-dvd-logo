@@ -154,6 +154,7 @@
       let movingLeft = true;
       let movingDown = true;
       let current = { left: movingLeft, down: movingDown };
+      let currentColor = "#fff";
       let movementSpeed =
         parseInt(document.getElementById("inputSpeed").value) / 5;
 
@@ -198,8 +199,17 @@
         }
 
         if (current.left !== movingLeft || current.down !== movingDown) {
-          document.getElementById("dvdLogo").style.backgroundColor =
-            selectRandom([
+          let randomColor = selectRandom([
+            "#00f",
+            "#0ff",
+            "#f0f",
+            "#f00",
+            "#ff0",
+            "#0f0",
+            "#0ff",
+          ]);
+          while (randomColor === currentColor)
+            randomColor = selectRandom([
               "#00f",
               "#0ff",
               "#f0f",
@@ -208,6 +218,10 @@
               "#0f0",
               "#0ff",
             ]);
+
+          currentColor = randomColor;
+          document.getElementById("dvdLogo").style.backgroundColor =
+            randomColor;
           current = { left: movingLeft, down: movingDown };
         }
 
