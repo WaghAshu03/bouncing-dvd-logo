@@ -11,6 +11,102 @@
     />
     <link rel="stylesheet" href="style.css" />
     <title>DVD Logo Using Javascript</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #dvdLogo {
+        width: 100px;
+        height: 50px;
+
+        position: fixed;
+        top: 50vh;
+        transition: 10ms;
+        z-index: -1;
+
+        border: 1px solid red;
+        mask: url("https://dvd.ashutoshwagh.com/dvd-logo.svg");
+        -webkit-mask: url("https://dvd.ashutoshwagh.com/dvd-logo.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: white;
+      }
+
+      #controls-box {
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        width: 4rem;
+        height: 4rem;
+      }
+
+      #controls-box > img {
+        filter: invert(1);
+        width: 2rem;
+        object-fit: contain;
+        margin: 1rem;
+        /* background-color: red; */
+      }
+
+      #controls-box > div {
+        position: absolute;
+        top: 0.6rem;
+        right: -14rem;
+        background-color: wheat;
+        width: 12rem;
+        min-height: 5rem;
+        border-radius: 8px;
+        padding: 0.8rem;
+        transition: 300ms;
+        user-select: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        padding: 0;
+      }
+
+      #controls-box:hover > div {
+        right: 1rem;
+      }
+
+      #about {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      #git-logo {
+        /* height: 1rem; */
+        width: 100%;
+        align-self: center;
+        object-fit: contain;
+      }
+
+      #Speed {
+        display: grid;
+        grid-template-columns: auto 2rem;
+      }
+
+      #outputSpeed {
+        background-color: white;
+        border: 1px solid black;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <div id="dvdLogo"></div>
@@ -40,6 +136,81 @@
         </div>
       </div>
     </div>
-    <script src="script.js" />
+    <script>
+      function selectRandom(Arr) {
+        let randomVal = Arr[Math.floor(Math.random() * Arr.length)];
+        while (randomVal === 0)
+          randomVal = Math.floor(Math.random() * Arr.length);
+        return randomVal;
+      }
+
+      let leftPos = 0;
+      let topPos = window.innerHeight / 2;
+      let leftMax = window.innerWidth - 100;
+      let topMax = window.innerHeight - 50;
+      let movingLeft = true;
+      let movingDown = true;
+      let current = { left: movingLeft, down: movingDown };
+      let movementSpeed =
+        parseInt(document.getElementById("inputSpeed").value) / 5;
+
+      setInterval(() => {
+        movementSpeed =
+          parseInt(document.getElementById("inputSpeed").value) / 5;
+        leftMax = window.innerWidth - 100;
+        topMax = window.innerHeight - 50;
+
+        if (movingDown) topPos = topPos + movementSpeed;
+        else topPos = topPos - movementSpeed;
+
+        if (movingLeft) leftPos = leftPos + movementSpeed;
+        else leftPos = leftPos - movementSpeed;
+
+        if (topPos < 0) {
+          movingDown = true;
+          topPos =
+            topPos +
+            selectRandom([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+        }
+        if (topPos > topMax) {
+          movingDown = false;
+
+          topPos =
+            topPos -
+            selectRandom([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+        }
+        if (leftPos < 0) {
+          movingLeft = true;
+
+          leftPos =
+            leftPos +
+            selectRandom([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+        }
+        if (leftPos > leftMax) {
+          movingLeft = false;
+
+          leftPos =
+            leftPos -
+            selectRandom([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+        }
+
+        if (current.left !== movingLeft || current.down !== movingDown) {
+          document.getElementById("dvdLogo").style.backgroundColor =
+            selectRandom([
+              "#00f",
+              "#0ff",
+              "#f0f",
+              "#f00",
+              "#ff0",
+              "#0f0",
+              "#0ff",
+            ]);
+          current = { left: movingLeft, down: movingDown };
+        }
+
+        document.getElementById("dvdLogo").style.top = `${topPos}px`;
+        document.getElementById("dvdLogo").style.left = `${leftPos}px`;
+      }, 25);
+    </script>
   </body>
 </html>
